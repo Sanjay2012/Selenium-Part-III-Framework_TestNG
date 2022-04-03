@@ -1,0 +1,15 @@
+What is Selenium Framework? Types of Framework?
+ 	 The Selenium Framework is a code structure that makes code maintenance easy and efficient.
+  	 Without frameworks, users may place the “code” and “data” at the same location which is neither reusable nor readable. 
+	Frameworks produce beneficial outcomes like increased code reusability, higher portability, reduced cost of script maintenance, better code readability, etc.
+
+        There are mainly three type of frameworks created by Selenium WebDriver to automate manual test cases
+
+	1. Data Driven
+	2. Keyword Driven
+	3. Hybrid
+
+1. Data Driven
+	Data Driven Framework in Selenium is a method of separating Test data from the test case.
+	Once the Test data are separated from the test case, it can be easily modified for a specific functionality without changing the code. 
+	It is used to fetch Test Data from external files like Excel, .csv, .xml or some database tables.

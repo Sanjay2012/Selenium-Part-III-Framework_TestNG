@@ -1,0 +1,311 @@
+pomPagefactory+ TestNg
+|                 |
+POM classes       test classes (100)--> suite    
+
+TESTNG:
+================================
+# Why TestNG
+# What is TestNG
+# Advantages
+# Procedure to install TestNG
+# testNG annotation
+# testNG Emailbale Reports
+# testNG Keywords
+# Test Suite
+# Assertions/ verification
+# Parallel testing
+# TestNG data provider
+===================================
+# Why TestNG
+- we create POM classes & test class---> we are executing one test case 
+- pom classes= no. of pages of appl
+- test classes= no of test cases written by manual tester
+- manual tester-- do testing for unstable and new fetures
+- AT-regresstion  testing for previous stable build (execution test classes)
+10+15+20+15=
+- prepare report-- pass/failed test classes
+- complex & time cosuming
+- overcome this---> testng
+---------------------------------------
+# What is TestNG
+java unit framework --used to write test clas/ sess
+-------------------------------------
+# Advantages
+- all test classes execute/run on shot (test suite)
+- generate report
+- we can execute failed test classes only (testNG-failedTest.xml)
+
+----------------------------------------------------
+# Procedure to install TestNG in eclipse
+1. help---marketplace---search testng--choose---install---finish---restart eclipse
+
+# configure testNG to project
+right click on project---build path--configure build path--library--classpath
+-- choose TESTNG--NEXT--FINISH--apply---apply close
+
+----------------------------------------------------------
+# testNG annotation
+- @Test:
+used for execution of test method
+
+- @BeforeMethod:
+use for execution of test method before execution of every test method with annotation @Test
+(depends on how many @Test tags are present under TestClass)
+
+- @AfterMethod
+use for execution of test method after execution of every test method with annotation @Test
+(depends on how many @Test tags are present under TestClass)
+
+
+- @BeforeClass
+use for execution of test method before execution of test classe (only once)
+
+- @AfterClass
+use for execution of test method after execution of test classe (only once)
+
+test cases
+
+# functional testing
+(TestClass)
+TC1(LOGINLOGOUT)
+-open browser -----------------------------(@BeforeClass)
+-loginapp ---------------------------------(@BeforeMethod)
+-testcase--tc1--verification --------------(@Test)
+-testcase--tc2--verification --------------(@Test)
+-testcase--tc3--verification --------------(@Test)
+-logoutapp --------------------------------(@BeforeMethod)
+-browser close  ---------------------------(@AfterClass)
+
+
+
+
+TC2 (ADD SYMBOL)
+-open browser
+-loginapp
+-testcase--tc2--verification
+-logoutapp
+-browser close
+
+TC3 (BUY AMO ORDER)
+-open browser
+-loginapp
+-testcase--tc3--verification
+-logoutapp
+-browser close
+
+=============================================
+#TestNG Report
+- After execution testNg test class---Refresh project--
+---(test-output) folder under project-- click--
+-- emalable-report.html
+-- failed.xml 
+
+- if we use sop() to display text as an output then result will displayed in 
+consol not in report
+- Reporter.log("text", true)
+
+================================================
+# testNG Keywords
+1. priority
+2. dependsOnMethod
+3. invocation count
+4. Enable
+5. TimeOut
+
+* Priority:
+- @Test executes as per albhabetical order
+- Ex:
+CreateAccount()
+EditAccount()
+DeleteAccount()
+
+*Priority can be (int): default=0, +ve interger, -ve integer, duplicates
+- test case having lowest priority value will execute first
+- if duplicate priority --- alphabetical order
+
+*Priority should not be: variable, decimal
+
+* dependsOnMethod="Method Name"
+* Invocation count
+- this is used to execute the method multiple times
+
+
+*Enabled keyword:
+- used to enabled/ deciabled test cases
+(enabled=false)
+
+*TimeOut keyword
+==============================================
+package testNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class TestNG_Annotations {
+	
+	@BeforeClass
+	public void openBrowser() {
+		Reporter.log("Open Browser");
+	}
+	
+	
+	@BeforeMethod
+	public void loginApp() {
+		Reporter.log("Login to App");
+	}
+	
+	
+	@Test
+	public void loginFunctionality() {
+		Reporter.log("Login Logout Functionality");
+	}
+	
+	@Test
+	public void addSymbol() {
+		Reporter.log("Adding stock");
+	}
+	
+	@Test
+	public void buyAMOOrder() {
+		Reporter.log("AMO Oder");
+	}
+	
+	@AfterMethod
+	public void logOutApp() {
+		Reporter.log("Logout App");
+	}
+	
+	@AfterClass
+	public void closeBrowser() {
+		Reporter.log("Close Browser");
+	}
+
+}
+===========================
+package testNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class TestNG_Priority {
+	@Test(priority = -5)
+	public void createAccount() {
+		Reporter.log("Create Account", true);
+	}
+	
+	@Test
+	public void editAccount() {
+		Reporter.log("Edit Account", true);
+	}
+	
+	@Test(priority = 2)
+	public void deleteAccount() {
+		Reporter.log("Delete Account", true);
+	}
+
+}
+================================
+package testNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class TestNG_DependOn {
+	@Test
+	public void SignIn() {
+		Reporter.log("Sign In Account", true);
+	}
+	
+	@Test(dependsOnMethods = "SignIn")
+	public void ComposeEmail() {
+		Reporter.log("Compose Email", true);
+	}
+	
+	@Test(dependsOnMethods = "SignIn")
+	public void Logout() {
+		Reporter.log("Logout from Account", true);
+	}
+	
+
+}
+===============================
+package testNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.*;
+
+public class TestNGEnabled {
+		
+		@BeforeClass
+		public void openBrowser() {
+			System.out.println("Open Browser");
+		}
+		
+		@AfterMethod
+		public void logOutApp() {
+			System.out.println("Logout App");
+		}
+		
+		@BeforeMethod
+		public void loginApp() {
+			System.out.println("Login to App");
+		}
+		@AfterClass
+		public void closeBrowser() {
+			System.out.println("Close Browser");
+		}
+		
+		
+		@Test
+		public void loginFunctionality() {
+			Reporter.log("Login Logout Functionality", true);
+		}
+		
+		@Test
+		public void addSymbol() {
+			Reporter.log("Adding stock", true);
+		}
+		
+		@Test(enabled = false)
+		public void buyAMOOrder() {
+			Reporter.log("AMO Oder", true);
+		}
+		
+		
+		
+		
+
+	}
+=====================================
+package testNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class TestNGTimeOut {
+	@Test(priority = 1)
+	public void createAccount() {
+		Reporter.log("Create Account", true);
+	}
+	
+	@Test
+	public void editAccount() {
+		Reporter.log("Edit Account", true);
+	}
+	
+	@Test (timeOut = 1000)
+	public void test1() throws InterruptedException {
+		Thread.sleep(6000);
+		Reporter.log("Required more time", true);
+	}
+	
+	@Test(priority = 2)
+	public void deleteAccount() {
+		Reporter.log("Delete Account", true);
+	}
+
+}

@@ -1,0 +1,73 @@
+POM with pagefactory
+
+POM:
+	IT is a java design pattern use for design of classes in Test script. 
+
+	Page Object model is an object design pattern in Selenium, where
+		1. Web pages are represented as classes &
+		2. The various elements on the page are defined as variables on the class.
+	In this case we will use Page Factory to initialize web elements that are defined in web page classes or Page Objects.
+
+
+	POM Strictly follows encapsulation concept where
+		1. Data member should be declared globaly with access level private
+		2. Initialize within a constructor with access level public using pagefactory 
+		3. Utilize within a method with access level public
+
+	Note: 
+		1. No of D.M. that need to be created under a pom class will depends on no of element that need to be handle in a webpage.
+		2. pom class will not contain a main method, to run a pom class we require another class with main() ie. Test class
+		3. Test class will contain all the navigation steps to test an application
+
+
+
+Pagefactory:
+	It is a class which contains static method like initElements.
+
+	To initialize D.M. in PageFactory we need to use initElements method within the constructor.
+	Syntax:
+		PageFactory.initElements(driver, this);
+
+	initElements will initialize D.M by identifying each componant present in a webpage by using @findBy annotation,
+	which takes locator type as an input. 	
+	Syntax:
+		@FindBy(locator Type ="locator value/exression")
+		private WebElement D.M. ;
+
+
+Working of PageFactory:
+	1. While executing Test Script initElement method will convert all the the data members @findBy annotation to findElement(),
+	   this process is known as basic/early initialization.
+
+	        @FindBy(xpath="//span[text()='KV']") private WebElement PN;    ----> WebElement PN = driver.findElement(By.xpath("//span[text()='KV']"));
+
+	2. To perform action on component we need to call a methods.
+
+	3. Before performing each action initElement method will identifies component present or not, then it will do complete initialization  
+	   this process is known as late/lazy initialization.
+
+
+Disadvantage of POM:
+	POM will initialize all the component before performing actions, but sometimes application may contains few components which will be hidden &
+	displayed once we perform action on components, that hidden component will not be displayed while pom initializing,
+        so it throws "No such element" exception.
+
+	To overcome drawback of pom, we need to use "PageFactory" which is an extension of pom.
+
+
+
+Diffrence between POM & PageFactory
+				POM									PageFactory
+	1. It will initialize all the D.M. present in 					It will initialize the D.M. present in a class before 
+	   class completely before performing action on components			performing each action.
+
+	2. It will use if webpage is not containing hidden elements.			It will be used if webpage is containing hidden elements.
+
+
+
+Advantages of POM:
+	1) Makes the code reusable
+	2) It is useful in reducing code duplication
+	3) It makes ease in maintaining the code (flow in the UI is separated from verification)
+	4) Makes code readable (Methods get more realistic names)
+	5) The Code becomes less and optimised

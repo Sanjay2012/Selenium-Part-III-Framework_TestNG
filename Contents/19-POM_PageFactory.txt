@@ -1,0 +1,260 @@
+Page Object Model (POM) with  page Factory
+=============================================
+POM: java design pattern used for design classes in test script/ test case
+
+-POM is an object design patern in selenium where
+1.  webpage are represented as classes
+2. The various elements present in page are defined as variable on the class
+
+-page factory to initialize the webelemnts that are defined in webpage classes/ page object
+- POM trictly follow encapsulation
+1. data members should be declared globally with access level as "Private"===> declare the data member
+2. Initialze: initialize within a constructor with access  level is public using page factory
+3. utilize data members within a method with access level public
+
+note:
+- Data members created= webelements need to handle in page
+- POM class will not contain main method to run a POM class. So we will use another class(Test class) under
+ we have main() method
+- Test class- comtain all navigation steps to test application
+
+===================================================
+ex. Zerodha application
+page 1==> UN & PWD ---> click on continue
+page 2==> PIN --> continue
+Page 3==> Home page---> assert
+
+
+#How many pom classes we need to create :3
+
+(Declartion of data members
+Initialization of them)
+
+# Test class: main() method
+
+
+--------------------
+declare data members
+
+@findBy annototaton to find the element---> basic/early initialization
+
+@findBy(locator type="Expression of locator")
+
+@findBy(xpath="//*[@id="userid"]") private WebElemnt UN
+
+
+-->before perfoming each action initElement method will identifies component present or not
+and then it will do the compelete initilization
+- thius is known as lazy initization
+
+# Drawback of POM
+- pom will initilize all elements before perfoming actions
+- but many elements hidden on page/ may be displayed once peform action on another element
+e.g dropdown---> click--> show option
+- no such element 
+- page factory
+
+
+# differe
+POM                      Page factory
+
+# early initi           lazy/late initi
+
+
+
+#pom
+- code reusable
+-reducing code duplication
+- easy to manintain code
+- code redable
+- code becomes less and optimize
+
+===================================================
+
+package pomPageFactory;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteLoginPage1 {
+	
+	// declaration
+		@FindBy(xpath = "//*[@id=\"userid\"]") 
+			private WebElement UN;
+		@FindBy(xpath = "//*[@id=\"password\"]")
+		private WebElement PWD;
+		
+		@FindBy(xpath = "//*[@class=\"button-orange wide\"]")
+		private WebElement login;
+		
+		
+		// initilization
+		
+		public KiteLoginPage1 (WebDriver driver) {
+			PageFactory.initElements(driver, this);
+			
+		}
+		
+		
+		public void
+		setKiteLoginPage1Username() {
+			UN.sendKeys("KW0610");
+		}
+		
+		public void
+		setKiteLoginPage1Password() {
+			PWD.sendKeys("Shiv@123");
+		}
+		
+		public void
+		clickKiteLoginPage1LoginButton() {
+			login.click();
+		}
+		
+
+}
+========================================
+package pomPageFactory;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteLoginPage2 {
+	
+	// declaration
+			@FindBy(xpath = "//*[@id=\"pin\"]") 
+				private WebElement PIN;
+			@FindBy(xpath = "//*[@class=\"button-orange wide\"]")
+			private WebElement CNT;
+
+			
+			
+			// initilization
+			
+			public KiteLoginPage2 (WebDriver driver) {
+				PageFactory.initElements(driver, this);
+				
+			}
+			
+			
+			public void
+			setKiteLoginPage2Pin() {
+				PIN.sendKeys("152022");
+			}
+			
+			
+			public void
+			clickKiteLoginPage2ContinueButton() {
+				CNT.click();
+			}
+
+}
+=====================================
+package pomPageFactory;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteHomePage {
+	
+	// declaration
+				@FindBy(xpath = "//*[@class=\"avatar\"]") 
+					private WebElement profileName;
+
+				
+				// initilization
+				
+				public KiteHomePage (WebDriver driver) {
+					PageFactory.initElements(driver, this);
+					
+				}
+				
+				public void
+				veryfyKiteHomePageProfileName() {
+					
+					String actual = profileName.getText();
+					
+					String expected="SB";
+					
+					if (actual.equals(expected)) {
+						
+						System.out.println("PASS");
+						
+					}
+					
+					else {
+						System.out.println("FAIL");
+					}
+					
+				}
+
+}
+
+==================================
+package pomPageFactory;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class KiteLoginTest {
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		
+		
+		// calling methods from POM class -- KiteLoginPage1
+		KiteLoginPage1 login1= new KiteLoginPage1(driver);
+		login1.setKiteLoginPage1Username();
+		login1.setKiteLoginPage1Password();
+		login1.clickKiteLoginPage1LoginButton();
+		
+		
+		// cllaing methods from page2
+		
+		KiteLoginPage2 login2= new KiteLoginPage2(driver);
+		login2.setKiteLoginPage2Pin();
+		login2.clickKiteLoginPage2ContinueButton();
+		
+		
+		// calling methods from home page class
+		
+		KiteHomePage home=new KiteHomePage(driver);
+		home.veryfyKiteHomePageProfileName();
+		
+		Thread.sleep(5000);
+		
+		driver.quit();
+		
+	
+		
+	}
+	
+	
+	
+
+}
+=================================
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+ package WDDF_Example;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginToKiteHomePage {
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+
+		// Enter UN
+		driver.findElement(By.xpath("//input[@id='userid']")).sendKeys("DV1510");
+
+		// Enter PWD
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Vijay@123");
+
+		// Click on login button
+		driver.findElement(By.xpath("//button[text()='Login ']")).click();
+
+		// Enter Pin
+		driver.findElement(By.xpath("//input[@id='pin']")).sendKeys("959594");
+
+		// Click on Continue button
+		driver.findElement(By.xpath("//button[text()='Continue ']")).click();
+
+		// verify profile name on Kite Home page
+		String act = driver.findElement(By.xpath("//span[text()='KV']")).getText();
+		String exp = "KV1";
+
+		if (act.equals(exp)) {
+			System.out.println("Pass");
+		} else {
+			System.out.println("Fail");
+		}
+
+	}
+}
+
+
+
+
+
+=====================================================================================
+
+
+package DDF_Example;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class LoginToKiteHomePage_DDF {
+	public static void main(String[] args) throws EncryptedDocumentException, IOException, InterruptedException {
+
+		FileInputStream file = new FileInputStream(
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Sept20.xlsx");
+		Sheet sh = WorkbookFactory.create(file).getSheet("DDF");
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
+
+		WebDriver driver = new ChromeDriver(options);
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+
+		// Enter UN
+		String UN = sh.getRow(0).getCell(0).getStringCellValue();
+		driver.findElement(By.xpath("//input[@id='userid']")).sendKeys(UN);
+
+		// Enter PWD
+		String pwd = sh.getRow(0).getCell(1).getStringCellValue();
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys(pwd);
+
+		// Click on login button
+		driver.findElement(By.xpath("//button[text()='Login ']")).click();
+
+		// Enter Pin
+		String pin = sh.getRow(0).getCell(2).getStringCellValue();
+		driver.findElement(By.xpath("//input[@id='pin']")).sendKeys(pin);
+
+		// Click on Continue button
+		driver.findElement(By.xpath("//button[text()='Continue ']")).click();
+
+		// verify profile name on Kite Home page
+		String act = driver.findElement(By.xpath("//span[text()='KV']")).getText();
+		String exp = sh.getRow(0).getCell(3).getStringCellValue();
+
+		if (act.equals(exp)) {
+			System.out.println("Pass");
+		} else {
+			System.out.println("Fail");
+		}
+
+		Thread.sleep(3000);
+		driver.close();
+
+	}
+}

@@ -1,0 +1,134 @@
+1. Annotation
+	1. @Test
+	2. @BeforeMethod
+	3. @AfterMethod
+	4. @BeforeClass
+	5. @AfterClass
+
+	1. @Test:- Use for execution of test method.
+
+	2. @BeforeMethod:- It is use for execution of test method before execution of every test method with an annotation @Test.
+
+	3. @AfterMethod:- It is use for execution of test method after execution of every test method with an annotation @Test.
+
+	4. @BeforeClass:- It is use for execution of test method before execution of test class.
+
+	5. @AfterClass:- It is use for execution of test method after execution of test class.
+
+
+
+
+TestNG Keyword:
+	1. invocationCount
+	2. priority
+	3. enabled
+	4. TimeOut
+	5. dependsOnMethods
+
+1. invocationCount:
+	Sometimes same test method/TC need to be executed multiple which can be possible by using TestNG keyword "invocationCount"
+		eg. invocationCount=5;
+
+2. priority:
+	To change test method/TC execution order we need to use TestNG keyword "priority".
+		eg. priority=1
+Note:  priority can be   1. bydefault=0
+			 2. +ve integer
+			 3. -ve integer
+			 4. Duplicate
+
+       priority can't be  1. Decimals
+			  2. Variables
+
+3. enabled:
+	Disabling a test method/TC in TestNG can be achieved by setting the enabled attribute of the @Test annotation to false.
+	eg. enabled=false
+
+4.TimeOut:
+	If test class contains multiple test methods if one of the test method is time consuming to execute then 
+	TestNG bydefault fail that TC & executes the other TC.
+	eg. @Test(timeOut=8000)
+
+5. dependsOnMethods:
+	If 1 TC execution depends on multiple TC then we need to use "dependsOnMethods" TestNG keyword.
+	eg. dependsOnMethods= {"TC name"}
+
+
+
+
+
+
+
+Emailable Report
+
+	Report generation is very important when you are doing the Automation Testing as well as for Manual Testing.
+
+	By looking at the result, you can easily identify how many test cases are passed, failed and skipped.
+
+	By looking at the report, you will come to know what the status of the project is.
+
+	Selenium web driver is used for automating the web-application, but it won't generate any reports.
+
+	The TestNG will generate the default report.
+
+
+
+
+
+ ---Steps to generate E-mailable report----
+
+1. execute Test class and refresh the project. 
+2. You will get test-output folder.
+3. In That folder Right click on the "emailable-report.html" and select the option Open with the web browser or double click on it.
+
+
+
+
+
+
+
+ Steps to execute failed.xml file
+
+1. Create testng. xml file under project folder.
+2. execute testng.xml file
+3. In the test-output folder >> testng-failed. xml file will be created.
+4. execute "testng-failed. xml"
+In this way we can execute fail testcases in TestNG class.
+
+
+
+
+
+Failed.xml
+While executing the automation scripts, test cases may fail for several reasons. To optimize our next runs,
+we need to re-run only failed test cases
+
+
+
+
+
+
+
+
+TestNG advantages
+ It has different assertions that helps in checking the expected and actual results.
+ It allows to assign priority to test methods
+ It allows to define dependency of one test method over other method
+ It provide Detailed (HTML) reports/ Emailable report
+ It allows grouping of test methods into test class
+ TestNG provides parallel execution of test methods
+
+
+
+
+
+
+
+
+
+Junit						TestNG
+
+Parallel test Runs	JUnit does not support to run parallel tests.		TestNG can run parallel tests.
+Supports Annotation	It does not support advanced annotation.		It supports advanced annotation.
+Dependency tests	The dependency tests are missing in JUnit.		Dependency tests are present in TestNG.
+Grouping tests	        Grouping tests together is not possible in JUnit.	Tests can be grouped together and run parallel.

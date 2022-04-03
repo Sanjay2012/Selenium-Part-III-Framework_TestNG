@@ -1,0 +1,277 @@
+# creating TestNG "Test class"
+# We have to verify the login_logout functionality of zerodha application
+- POM class+ page Factory (initElement)
+1. page 1 (UN, PWD, continue button)
+2. Page 2 (enetring pin, loginButton)
+3. HomePage (verification of profile Name, logout )
+
+- TestNG Test class
+
+===========================================
+#Test suite
+- used to execute all test classes
+- xml file which contain all test classes
+
+# procedure to create test suite
+-right click on test class package
+- go to TESTNG--> convert to TestNG
+- enter suite and test Name
+- click on finish
+- testng.xml file will be created---> suite  (contain all test classes)
+- double click and check
+
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="testNG.TestNG_DependOn"/>
+      <class name="testNG.TestNGEnabled"/>
+      <class name="testNG.TestNG_Annotations"/>
+      <class name="testNG.TestNGTimeOut"/>
+      <class name="testNG.TestNG_InvocatioCount"/>
+      <class name="testNG.TestNG_Priority"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+-----
+# run the test suite
+- right click on testng.xml
+- run as--TestNg suite
+
+==========================================
+# verification using TestNG
+- if we use if - else approch for verification-- its tiome consuming 
+- so we folow this approch in test class, we have many test methods under it
+    --> execution time will increase
+- Assert class--> verification ---> lots of static methods
+1.assertEquals()
+2.assertNotEquals()
+3.assertTrue()
+4.assertFalse()
+5.assertNull()
+6.assertNotNull()
+7.Fail()
+
+
+#dwaback of Assert class:
+- if test class containing multiple test methods, but in one of test method contain multiple assertions
+ and one of the assertion may get failed
+then testNg not execute rest of the assrtions
+- hard assert
+-if any verification is faied then skip rest of the verification points
+
+- soft assert()
+- if any verification is faied then it will notifies & executes rest of the verifications in the test method
+
+====================
+package assertion;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class Verification {
+	@Test
+	public void Test1() {
+		Reporter.log("Verify AssertEqual method");
+		String s1="Hi";
+		String s2="Hello";
+		
+		Assert.assertEquals(s1, s2);   // fail
+		
+	}
+	@Test
+	public void Test2() {
+		Reporter.log("Verify AssertEqual method");;
+		String s2="Hello";
+		String s3="Hello";
+
+		Assert.assertEquals(s3, s2);  //pass
+		
+	}
+	
+	@Test
+	public void Test3() {
+		Reporter.log("Verify AssertNotEqual method");
+		String s1="Hi";
+		String s2="Hello";
+		
+		Assert.assertNotEquals(s2, s1); //pass
+				
+	}
+	
+	@Test
+	public void Test4() {
+		Reporter.log("Verify AssertNotEqual method");
+		String s2="Hello";
+		String s3="Hello";
+		Assert.assertNotEquals(s3, s2); // fail
+				
+	}
+	
+	@Test
+	public void Test5() {
+		Reporter.log("Verify AssertTrue method");
+		String s2="Hello";
+		String s3="Hello";
+		
+		Assert.assertTrue(s2==s3);  // pass
+		
+		
+	}
+	
+	@Test
+	public void Test6() {
+		Reporter.log("Verify AssertTrue method");
+		String s1="Hi";
+		String s2="Hello";
+		
+		Assert.assertTrue(s1==s2);  //fail
+		
+		
+	}
+	
+	@Test
+	public void Test7() {
+		Reporter.log("Verify AssertFalse method");
+		String s2="Hello";
+		String s3="Hello";
+		
+		Assert.assertFalse(s2==s3); // fail
+		
+	}
+	
+	@Test
+	public void Test8() {
+		Reporter.log("Verify AssertFalse method");
+		String s1="Hi";
+		String s2="Hello";
+		
+		Assert.assertFalse(s1==s2); //pass
+		
+	} 
+	
+	@Test
+	public void Test9() {
+		Reporter.log("Verify AssertNull method");
+		String s3="Hello";
+		
+		Assert.assertNull(s3);  //fail
+		
+	}
+	
+	@Test
+	public void Test10() {
+		Reporter.log("Verify AssertNull method");
+		String s4=null;
+		
+		Assert.assertNull(s4);  //pass
+		
+	}
+	
+	@Test
+	public void Test11() {
+		Reporter.log("Verify AssertNotNull method");
+
+		String s3="Hello";
+		Assert.assertNotNull(s3);  //pass
+		
+	}
+	
+	@Test
+	public void Test12() {
+		Reporter.log("Verify AssertNotNull method");
+		String s4=null;
+		
+		Assert.assertNotNull(s4); //fail
+		
+	}
+	
+	
+	@Test
+	public void Test13() {
+		Reporter.log("forcefully fail test", true);
+		Assert.fail();   // fail
+		
+	}
+	
+	@Test(dependsOnMethods = "Test13")
+	public void Test14() {
+		Reporter.log("Method should skipped", true);
+		Assert.fail();   // skip
+		
+	}
+
+
+
+}
+--------------------
+
+---------------------
+package assertion;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class softAssert {
+	@Test
+	public void Test1() {
+		String s1="Hi";
+		String s2="Hello";
+		String s3="Hello";
+		String s4=null;
+		
+		SoftAssert soft=new SoftAssert();
+		
+		
+		Reporter.log("Verify AssertEqual method", true);;
+		soft.assertEquals(s3, s2);
+		
+		Reporter.log("Verify AssertEqual method", true);
+		soft.assertEquals(s1, s2);
+	
+		Reporter.log("Verify AssertNotEqual method", true);
+		soft.assertEquals(s2, s1);
+				
+		Reporter.log("Verify AssertNotEqual method", true);
+		soft.assertNotEquals(s3, s2);
+				
+		Reporter.log("Verify AssertTrue method", true);
+		soft.assertTrue(s2==s3);
+		
+		Reporter.log("Verify AssertTrue method", true);
+		soft.assertTrue(s1==s2);
+		
+		Reporter.log("Verify AssertFalse method");
+		soft.assertFalse(s2==s3);
+		
+		Reporter.log("Verify AssertFalse method");
+		soft.assertFalse(s1==s2);
+		
+		Reporter.log("Verify AssertNull method");
+		soft.assertNull(s3);
+		
+		Reporter.log("Verify AssertNull method");
+		soft.assertNull(s4);
+		
+		Reporter.log("Verify AssertNotNull method");
+		soft.assertNotNull(s3);
+		
+		Reporter.log("Verify AssertNotNull method");
+		soft.assertNotNull(s4);
+		
+		Reporter.log("forcefully fail test", true);
+		soft.fail();
+		
+		soft.assertAll();
+
+		
+	}
+}
+
+
+
+

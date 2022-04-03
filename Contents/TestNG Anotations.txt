@@ -1,0 +1,1489 @@
+package TestNG;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Anotations {
+
+	@BeforeClass
+	public void openBrowser() {
+		System.out.println("open Browser");
+	}
+	
+	@BeforeMethod
+	public void loginToApp() {
+		System.out.println("login To App---");
+	}
+
+	@Test
+	public void TC1() {
+		System.out.println("running TC1---");
+	}
+
+	@Test
+	public void TC2() {
+		System.out.println("running TC2---");
+	}
+
+	@AfterMethod
+	public void logoutFromApp() {
+		System.out.println("logout From App---");
+	}
+	
+	
+	@AfterClass
+	public void closeBrowser() {
+		System.out.println("close Browser");
+	}
+	
+	
+	
+
+}
+
+
+
+==============================================================================
+
+
+package TestNG;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Keywords {
+	//5. dependsOnMethods
+	@Test()
+	public void login1() {
+		System.out.println("running login1 method");
+	}
+	
+	@Test()
+	public void login2() {
+		Assert.fail();
+		System.out.println("running login2 method");
+	}
+	
+	@Test(dependsOnMethods= {"login1","login2"})
+	public void logout() {
+		System.out.println("running logout method");
+	}
+	
+	
+	// 4. timeOut
+//	@Test(timeOut=5000)
+//	public void TC1() throws InterruptedException {
+//		Thread.sleep(8000);
+//		System.out.println("running TC1");
+//	}
+	
+	
+	
+	//3. enabled
+//	@Test()
+//	public void TC1() {
+//		System.out.println("running TC1");
+//	}
+//	
+//	@Test(enabled=false)
+//	public void TC2() {
+//		System.out.println("running TC2");
+//	}
+	
+//	//2. priority
+//	@Test(priority=-2)
+//	public void TC1() {
+//		System.out.println("running TC1");
+//	}
+//
+//	@Test()
+//	public void TC2() {
+//		System.out.println("running TC2");
+//	}
+
+	// 1. invocationCount
+//	@Test(invocationCount=10)
+//	public void TC1() {
+//		System.out.println("running TC1");
+//	}
+
+}
+
+
+========================================================================
+
+
+
+
+
+package TestNG;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class EmailableReport {
+
+	@Test()
+	public void TC1() {
+		Reporter.log("running TC1 ");
+	}
+	
+	@Test()
+	public void TC2() {
+		Reporter.log("running TC2 ");
+	}
+	
+}
+
+=====================================================================================
+
+
+package TestNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class sample1 {
+
+	
+	@Test
+	public void TC1() {
+		Reporter.log("running TC1",true);
+	}
+	
+	
+	@Test
+	public void TC2() {
+		Reporter.log("running TC2", true);
+	}
+	
+}
+
+
+
+=======================================================================
+
+package TestNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class sample2 {
+	@Test
+	public void TC3() {
+		Reporter.log("running TC3", true);
+	}
+	
+	
+	@Test
+	public void TC4() {
+		Reporter.log("running TC4", true);
+	}
+	
+}
+
+
+
+==========================================================================
+
+
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite1">
+  <test  name="Test1">
+    <classes>
+      <class name="TestNG.sample1"/>
+       <class name="TestNG.sample2"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+===========================================================================
+
+
+ package POM_DDF_Test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class KiteLoginTest1 {
+
+	WebDriver driver;
+	Sheet sh;
+	KiteLogin1Page login1;
+	KiteLogin2Page login2;
+	KiteHomePage home;
+
+	@BeforeClass
+	public void openBrowser() throws EncryptedDocumentException, IOException {
+		FileInputStream file = new FileInputStream(
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Sept20.xlsx");
+		sh = WorkbookFactory.create(file).getSheet("DDF");
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
+
+		driver = new ChromeDriver(options);
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+
+		login1 = new KiteLogin1Page(driver);
+		login2 = new KiteLogin2Page(driver);
+		home = new KiteHomePage(driver);
+
+	}
+
+	@BeforeMethod
+	public void loginToApp() {
+
+		String UN = sh.getRow(0).getCell(0).getStringCellValue();
+		login1.setKiteLogin1PageUsername(UN);
+
+		String pwd = sh.getRow(0).getCell(1).getStringCellValue();
+		login1.setKiteLogin1PagePassword(pwd);
+
+		login1.clickKiteLogin1PageLoginButton();
+
+		String pin = sh.getRow(0).getCell(2).getStringCellValue();
+		login2.setKiteLogin2PagePIN(pin);
+
+		login2.clickKiteLogin2PageContinue();
+	}
+
+	@Test
+	public void verifyProfileName() {
+
+		String exp = sh.getRow(0).getCell(3).getStringCellValue();
+		home.verifyKiteHomePageProfileName(exp);
+
+	}
+
+	@AfterMethod
+	public void logoutFromApp() {
+
+	}
+
+	@AfterClass
+	public void closeBrowser() {
+		driver.close();
+	}
+
+}
+
+
+==========================================================================
+
+
+package Verification;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class sample {
+
+	// 7. fail
+		@Test
+		public void TC1() {
+			Reporter.log("Running TC1");
+			Assert.fail();
+		}
+	
+	
+//	// 6. assertNotNull
+//	@Test
+//	public void TC1() {
+//		Reporter.log("Running TC1");
+//		String actResult = null;
+//		Assert.assertNotNull(actResult, "act result is null");
+//	}
+
+//	// 5. assertNull
+//		@Test
+//		public void TC1() {
+//			Reporter.log("Running TC1");
+//			String actResult="abc";
+//			Assert.assertNull(actResult,"");
+//		}
+
+//	// 4. assertTrue
+//	@Test
+//	public void TC1() {
+//		Reporter.log("Running TC1");
+//		boolean actresult = true;
+//		Assert.assertFalse(actresult,"radio button is selected");
+//	}
+
+//	// 3. assertTrue
+//	@Test
+//	public void TC1() {
+//		Reporter.log("Running TC1");
+//		boolean actresult = false;
+//		Assert.assertTrue(actresult, "radio button not selected");
+//	}
+
+//	//2. assertNotEquals
+//		@Test
+//		public void TC1() {
+//			Reporter.log("Running TC1");
+//			String act = "abc";
+//			String exp = "abc1";
+//			Assert.assertNotEquals(act, exp, "both results are same");
+//			
+//		}
+
+//	//1. assertEquals
+//	@Test
+//	public void TC1() {
+//		Reporter.log("Running TC1");
+//
+//		String act = "abc";
+//		String exp = "abc";
+//
+//		Assert.assertEquals(act, exp, "act & exp results are not same");
+//
+//	}
+
+}
+
+
+
+==============================================================================
+
+package TestNG;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class ExecuteFailedTC {
+
+	@Test
+	public void TC1() {
+		Reporter.log("running TC1", true);
+	}
+
+	@Test
+	public void TC2() {
+		Reporter.log("running TC2", true);
+	}
+
+	@Test
+	public void TC3() {
+		Reporter.log("running TC3", true);
+	}
+
+	@Test
+	public void TC4() {
+    	//Assert.fail();
+		Reporter.log("running TC4", true);
+	}
+
+}
+
+
+==============================================================================
+
+ package TestNG;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class ExecuteFailedTC1 {
+
+	@Test
+	public void TC5() {
+		Reporter.log("running TC5", true);
+	}
+
+	@Test
+	public void TC6() {
+		Reporter.log("running TC6", true);
+	}
+
+	@Test
+	public void TC7() {
+		Reporter.log("running TC7", true);
+	}
+
+	@Test
+	public void TC8() {
+    //	Assert.fail();
+		Reporter.log("running TC8", true);
+	}
+
+}
+
+
+==============================================================================
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="TestNG.ExecuteFailedTC"/>
+        <class name="TestNG.ExecuteFailedTC1"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
+==============================================================================
+
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="TestNG.ExecuteFailedTC">
+        <methods>
+          <include name="TC4"/>
+        </methods>
+      </class> <!-- TestNG.ExecuteFailedTC -->
+     
+      <class name="TestNG.ExecuteFailedTC1">
+        <methods>
+          <include name="TC8"/>
+        </methods>
+      </class> <!-- TestNG.ExecuteFailedTC1 -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
+
+
+
+===============================================================================
+
+
+
+package Verification;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class HardAssert {
+	@Test
+	public void TC1() {
+		Reporter.log("Running HardAssert");
+		Assert.assertEquals("abc", "xyz");
+
+		Assert.assertEquals("abc", "abc");
+
+		Assert.assertTrue(true);
+	}
+}
+
+
+
+============================================================================
+
+
+package Verification;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class SoftAssert_ {
+
+	@Test
+	public void test() {
+		Reporter.log("running soft assert");
+		SoftAssert soft = new SoftAssert();
+		soft.assertEquals("abc", "xyz", "act & exp results are not same");
+
+		soft.assertEquals("abc", "abc", "act & exp results are same");
+
+		soft.assertTrue(false, "act result is false");
+
+		soft.assertAll();
+
+	}
+}
+
+
+============================================================================
+
+
+
+
+package TestNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class DisableTCExecutionFromSuite {
+
+	@Test
+	public void TC1() {
+		Reporter.log("running TC1");
+	}
+	
+	@Test
+	public void TC2() {
+		Reporter.log("running TC2");
+	}
+	
+	@Test
+	public void TC3() {
+		Reporter.log("running TC3");
+	}
+	
+	@Test
+	public void TC4() {
+		Reporter.log("running TC4");
+	}
+	
+}
+
+
+
+===================================================================================
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="TestNG.DisableTCExecutionFromSuite">
+      	<methods>
+      		<exclude name="TC4"/>
+      	</methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
+====================================================================================
+
+
+package TestNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class sample3 {
+
+	
+	@Test(groups="orders")
+	public void TC1() {
+		Reporter.log("running TC1",true);
+	}
+	
+	
+	@Test(groups="orders")
+	public void TC2() {
+		Reporter.log("running TC2", true);
+	}
+	
+
+	@Test(groups="fund")
+	public void TC3() {
+		Reporter.log("running TC3", true);
+	}
+	
+
+	@Test(groups="fund")
+	public void TC4() {
+		Reporter.log("running TC4", true);
+	}
+	
+}
+
+
+
+
+=====================================================================================
+
+package TestNG;
+
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class sample4 {
+
+	
+	@Test(groups="orders")
+	public void TC5() {
+		Reporter.log("running TC5",true);
+	}
+	
+	
+	@Test(groups="orders")
+	public void TC6() {
+		Reporter.log("running TC6", true);
+	}
+	
+
+	@Test(groups="fund")
+	public void TC7() {
+		Reporter.log("running TC7", true);
+	}
+	
+
+	@Test(groups="fund")
+	public void TC8() {
+		Reporter.log("running TC8", true);
+	}
+	
+}
+
+
+=======================================================================================
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+  <groups>
+  	<run>
+  		<include name="orders"/>	
+  	</run>  
+  </groups>  
+    <classes>
+      <class name="TestNG.sample3"/>
+       <class name="TestNG.sample4"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
+========================================================================================
+
+
+package TestNG;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Parallel1 {
+
+	@Test
+	public void TC1() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		
+		Thread.sleep(3000);
+		
+		driver.close();
+	}
+
+}
+
+
+======================================================================================
+
+
+package TestNG;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Parallel2 {
+	@Test
+	public void TC2() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://kite.zerodha.com/");
+		Thread.sleep(3000);
+
+		driver.close();
+	}
+}
+
+
+
+
+
+=========================================================================================
+
+
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+
+  <test name="Test1">
+    <classes>
+      <class name="TestNG.Parallel1"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  <test  name="Test2">
+    <classes>
+      <class name="TestNG.Parallel2"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  
+</suite> <!-- Suite -->
+
+
+
+==========================================================================================
+##########           Multibrowser Testing            ##############
+
+
+
+package TestNG;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class MultiBrowserTesting {
+WebDriver driver;
+	@Parameters("browser")
+	@Test
+	public void TC(String browser) throws InterruptedException {
+		if(browser.equals("chrome")) 
+		{
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+			driver = new ChromeDriver();
+		}
+		else if (browser.equals("firefox")) 
+		{
+			System.setProperty("webdriver.gecko.driver","C:\\Users\\sanjay\\Downloads\\geckodriver-v0.28.0-win64\\geckodriver.exe");
+			driver = new FirefoxDriver();
+		}
+		else if (browser.equals("ie")) {
+					
+		}
+		driver.get("https://www.facebook.com/");
+		
+		Thread.sleep(3000);
+		
+		driver.close();
+	}
+}
+
+
+
+
+==========================================================================================
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test  name="Test1">
+  	<parameter name="browser" value="firefox"/>
+  	<classes>
+  		<class name="TestNG.MultiBrowserTesting"/>
+  	</classes>
+  </test> <!-- Test -->
+    
+  <test  name="Test2">
+  	<parameter name="browser" value="chrome"/>
+  	<classes>
+  		<class name="TestNG.MultiBrowserTesting"/>
+  	</classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+
+
+
+==========================================================================================
+
+
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+ 
+  <test  name="ChromeTest">
+ 	 <parameter name="browser" value="chrome"/>
+	  <classes> 	
+	 	 <class name="TestNG.MultiBrowserTesting"/>
+	  </classes>
+  </test> <!-- Test -->
+  
+   <test  name="FirefoxTest">
+ 	 <parameter name="browser" value="firefox"/>
+	  <classes> 	
+	 	 <class name="TestNG.MultiBrowserTesting"/>
+	  </classes>
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->
+
+
+
+==========================================================================================
+
+
+package TestNG;
+
+import org.testng.annotations.Test;
+
+public class DataProvider {
+
+	@Test(dataProvider="login", dataProviderClass=DP.class)
+	public void login(String UN, String pwd) {
+		System.out.println(UN);
+		System.out.println(pwd);
+	}
+	
+	@Test(dataProvider="logout", dataProviderClass=DP.class)
+	public void logout(String PN) {
+		System.out.println("profile name: "+ PN);
+	}
+	
+	
+}
+
+
+
+==========================================================================================
+
+
+ package TestNG;
+
+import org.testng.annotations.DataProvider;
+
+public class DP {
+
+	
+	@DataProvider(name="login")
+	public Object loginTest() {
+		Object data[][] = { { "abc1", "xyz1" }, { "abc2", "xyz2" } };
+		return data;
+	}
+	
+	@DataProvider(name="logout")
+	public Object logoutTest() {
+		Object data[][] = { { "KV" },{ "KV1" } };
+		return data;
+	}
+
+}
+
+
+
+
+==================================================================================================
+
+
+
+package POM_DDF_Test;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class KiteLoginTest1 extends BaseClass {
+
+	KiteLogin1Page login1;
+	KiteLogin2Page login2;
+	KiteHomePage home;
+
+	@BeforeClass
+	public void openBrowser() throws EncryptedDocumentException, IOException {
+
+		browserOpen();
+		login1 = new KiteLogin1Page(driver);
+		login2 = new KiteLogin2Page(driver);
+		home = new KiteHomePage(driver);
+
+	}
+
+	@BeforeMethod
+	public void loginToApp() throws EncryptedDocumentException, IOException {
+
+		login1.setKiteLogin1PageUsername(Utility.getTestData(0, 0));
+
+		login1.setKiteLogin1PagePassword(Utility.getTestData(0, 1));
+
+		login1.clickKiteLogin1PageLoginButton();
+
+		login2.setKiteLogin2PagePIN(Utility.getTestData(0, 2));
+
+		login2.clickKiteLogin2PageContinue();
+	}
+
+	@Test
+	public void verifyProfileName() throws EncryptedDocumentException, IOException {
+
+		home.verifyKiteHomePageProfileName(Utility.getTestData(0, 3));
+
+	}
+
+	@AfterMethod
+	public void logoutFromApp() {
+
+	}
+
+	@AfterClass
+	public void closeBrowser() {
+		driver.close();
+	}
+
+}
+
+
+
+==================================================================================================
+
+
+package POM_DDF_Test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class BaseClass {
+	WebDriver driver;
+
+	public void browserOpen() {
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		driver = new ChromeDriver(options);
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+	}
+
+}
+
+
+
+==================================================================================================
+
+
+package POM_DDF_Test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+public class Utility {
+	static Sheet sh;
+	
+	public static String getTestData(int rowIndx, int colIndex) throws EncryptedDocumentException, IOException {
+		FileInputStream file = new FileInputStream(
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Sept20.xlsx");
+		 sh = WorkbookFactory.create(file).getSheet("DDF");
+		String value = sh.getRow(rowIndx).getCell(colIndex).getStringCellValue();
+		 return value;
+	}
+	
+}
+
+
+
+
+================================================================================================
+
+
+package POM_DDF_Test;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class KiteLoginTest1 extends BaseClass {
+
+	KiteLogin1Page login1;
+	KiteLogin2Page login2;
+	KiteHomePage home;
+	int TCID;
+
+	@BeforeClass
+	public void openBrowser() throws EncryptedDocumentException, IOException {
+		browserOpen();
+		login1 = new KiteLogin1Page(driver);
+		login2 = new KiteLogin2Page(driver);
+		home = new KiteHomePage(driver);
+	}
+
+	@BeforeMethod
+	public void loginToApp() throws EncryptedDocumentException, IOException {
+		login1.setKiteLogin1PageUsername(Utility.getTestData(0, 0));
+		login1.setKiteLogin1PagePassword(Utility.getTestData(0, 1));
+		login1.clickKiteLogin1PageLoginButton();
+		login2.setKiteLogin2PagePIN(Utility.getTestData(0, 2));
+		login2.clickKiteLogin2PageContinue();
+	}
+
+	@Test
+	public void verifyProfileName() throws EncryptedDocumentException, IOException {
+		TCID = 200;
+		String actResult = home.getKiteHomePageProfileName();
+		String expResult = Utility.getTestData(0, 3);
+
+		Assert.assertEquals(actResult, expResult, "act & exp result results are not same");
+	}
+
+	@AfterMethod
+	public void logoutFromApp(ITestResult result) throws IOException {
+
+		if (result.getStatus() == ITestResult.FAILURE) {
+			Utility.captureScreenshot(driver, TCID);
+		}	
+	}
+
+	@AfterClass
+	public void closeBrowser() {
+		driver.close();
+	}
+
+}
+
+
+
+=========================================================================================
+
+
+package POM_DDF_Test;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
+
+public class Utility {
+	static Sheet sh;
+
+	public static String getTestData(int rowIndx, int colIndex) throws EncryptedDocumentException, IOException {
+		FileInputStream file = new FileInputStream(
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Sept20.xlsx");
+		sh = WorkbookFactory.create(file).getSheet("DDF");
+		String value = sh.getRow(rowIndx).getCell(colIndex).getStringCellValue();
+		return value;
+	}
+
+	public static void captureScreenshot(WebDriver driver, int TCID) throws IOException {
+
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File dest = new File(
+				"C:\\Users\\sanjay\\eclipse-workspace\\Sept20_Selenium\\Screenshots\\TCNO_" + TCID + ".jpg");
+		FileHandler.copy(src, dest);
+	}
+
+}
+
+
+
+====================================================================================================
+
+package POM_DDF_Test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteHomePage {
+
+	@FindBy(xpath="//span[text()='KV']")
+	private WebElement PN;
+	
+	
+	public KiteHomePage(WebDriver driver){
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	public String getKiteHomePageProfileName() {
+		String act = PN.getText();
+		return act;
+	}
+	
+	
+}
+
+
+========================================================================================================
+
+
+
+
+package POM_DDF_Test;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class KiteLoginTest1 extends BaseClass {
+
+	KiteLogin1Page login1;
+	KiteLogin2Page login2;
+	KiteHomePage home;
+	int TCID;
+
+	@BeforeClass
+	public void openBrowser() throws EncryptedDocumentException, IOException {
+		browserOpen();
+		login1 = new KiteLogin1Page(driver);
+		login2 = new KiteLogin2Page(driver);
+		home = new KiteHomePage(driver);
+	}
+
+	@BeforeMethod
+	public void loginToApp() throws EncryptedDocumentException, IOException {
+		login1.setKiteLogin1PageUsername(Utility.getTestData(0, 0));
+		login1.setKiteLogin1PagePassword(Utility.getTestData(0, 1));
+		login1.clickKiteLogin1PageLoginButton();
+		login2.setKiteLogin2PagePIN(Utility.getTestData(0, 2));
+		login2.clickKiteLogin2PageContinue();
+	}
+
+	@Test
+	public void verifyProfileName() throws EncryptedDocumentException, IOException {
+		TCID = 200;
+		String actResult = home.getKiteHomePageProfileName();
+		String expResult = Utility.getTestData(0, 3);
+
+		Assert.assertEquals(actResult, expResult, "act & exp result results are not same");
+	}
+
+	@AfterMethod
+	public void logoutFromApp(ITestResult result) throws IOException {
+
+		if (result.getStatus() == ITestResult.FAILURE) {
+			Utility.captureScreenshot(driver, TCID);
+		}	
+	}
+
+	@AfterClass
+	public void closeBrowser() {
+		driver.close();
+	}
+
+}
+
+
+===================================================================================================
+
+package POM_DDF_Test;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
+
+public class Utility {
+	static Sheet sh;
+
+	public static String getTestData(int rowIndx, int colIndex) throws EncryptedDocumentException, IOException {
+		FileInputStream file = new FileInputStream(
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Sept20.xlsx");
+		sh = WorkbookFactory.create(file).getSheet("DDF");
+		String value = sh.getRow(rowIndx).getCell(colIndex).getStringCellValue();
+		return value;
+	}
+
+	public static void captureScreenshot(WebDriver driver, int TCID) throws IOException {
+
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File dest = new File(
+				"C:\\Users\\sanjay\\eclipse-workspace\\Sept20_Selenium\\Screenshots\\TCNO_" + TCID + ".jpg");
+		FileHandler.copy(src, dest);
+	}
+
+}
+
+
+===================================================================================================
+
+package POM_DDF_Test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteHomePage {
+
+	@FindBy(xpath="//span[text()='KV']")
+	private WebElement PN;
+	
+	
+	public KiteHomePage(WebDriver driver){
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	public String getKiteHomePageProfileName() {
+		String act = PN.getText();
+		return act;
+	}
+	
+	
+}
+
+
+
+
+###############################################################################################
+
+
+
+
+
+package POM_DDF_Test;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class KiteLoginTest1 extends BaseClass {
+
+	KiteLogin1Page login1;
+	KiteLogin2Page login2;
+	KiteHomePage home;
+	int TCID;
+
+	@Parameters("browserName")
+	@BeforeClass
+	public void openBrowser(String browserName) throws EncryptedDocumentException, IOException {
+		browserOpen(browserName);
+		login1 = new KiteLogin1Page(driver);
+		login2 = new KiteLogin2Page(driver);
+		home = new KiteHomePage(driver);
+	}
+
+	@BeforeMethod
+	public void loginToApp() throws EncryptedDocumentException, IOException {
+		login1.setKiteLogin1PageUsername(Utility.getTestData(0, 0));
+		login1.setKiteLogin1PagePassword(Utility.getTestData(0, 1));
+		login1.clickKiteLogin1PageLoginButton();
+		login2.setKiteLogin2PagePIN(Utility.getTestData(0, 2));
+		login2.clickKiteLogin2PageContinue();
+	}
+
+	@Test
+	public void verifyProfileName() throws EncryptedDocumentException, IOException {
+		TCID = 200;
+		String actResult = home.getKiteHomePageProfileName();
+		String expResult = Utility.getTestData(0, 3);
+
+		Assert.assertEquals(actResult, expResult, "act & exp result results are not same");
+	}
+
+	@AfterMethod
+	public void logoutFromApp(ITestResult result) throws IOException {
+
+		if (result.getStatus() == ITestResult.FAILURE) {
+			Utility.captureScreenshot(driver, TCID);
+		}	
+	}
+
+	@AfterClass
+	public void closeBrowser() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.close();
+	}
+
+}
+
+
+
+======================================================================================================
+
+
+ package POM_DDF_Test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class BaseClass {
+	WebDriver driver;
+
+	public void browserOpen(String browserName) {
+
+		if (browserName.equalsIgnoreCase("chrome")) {
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--disable-notifications");
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\sanjay\\eclipse-workspace\\Sept20_Selenium\\drivers\\chromedriver.exe");
+
+			driver = new ChromeDriver(options);
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", "C:\\Users\\sanjay\\eclipse-workspace\\Sept20_Selenium\\drivers\\geckodriver.exe");
+			driver = new FirefoxDriver();
+		} else if (browserName.equalsIgnoreCase("IE")) {
+
+		}
+
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	//	driver.manage().window().maximize();
+	}
+
+}
+
+
+
+======================================================================================================
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+
+  <test  name="Test">
+  	<parameter name="browserName" value="firefox"/>
+    <classes>
+      <class name="POM_DDF_Test.KiteLoginTest1"/>
+    </classes>
+  </test> <!-- Test -->
+    
+</suite> <!-- Suite -->
+
+
+
+======================================================================================================
+
+ <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+  
+  <test  name="ChromeTest">
+  	<parameter name="browserName" value="chrome"/>
+    <classes>
+      <class name="POM_DDF_Test.KiteLoginTest1"/>
+    </classes>
+  </test> <!-- Test -->
+  
+   <test  name="FirefoxTest">
+  	<parameter name="browserName" value="firefox"/>
+    <classes>
+      <class name="POM_DDF_Test.KiteLoginTest1"/>
+    </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
+
+
+======================================================================================================
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+  
+  <test  name="Test1">
+  	<parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="POM_DDF_Test.KiteLoginTest1"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  <test  name="Test2">
+  <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="POM_DDF_Test.KiteLoginTest2"/>
+    </classes>
+  </test> <!-- Test -->
+  
+  
+</suite> <!-- Suite -->
+
+
+
+
+
+
+
+

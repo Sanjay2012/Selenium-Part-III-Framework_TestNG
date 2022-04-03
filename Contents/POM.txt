@@ -1,0 +1,147 @@
+
+package POM;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteLogin1Page {
+//declaration
+	@FindBy(xpath = "//input[@id='userid']")
+	private WebElement UN;
+	
+	@FindBy(xpath = "//input[@id='password']")
+	private WebElement pwd;
+	
+	@FindBy(xpath = "//button[text()='Login ']")
+	private WebElement login;
+
+//initialization
+	public KiteLogin1Page(WebDriver driver) {
+		PageFactory.initElements(driver, this);
+	}
+
+	public void setKiteLogin1PageUsername() {
+		UN.sendKeys("DV1510");
+	}
+
+	public void setKiteLogin1PagePassword() {
+		pwd.sendKeys("Vijay@123");
+	}
+
+	public void clickKiteLogin1PageLoginButton() {
+		login.click();
+	}
+
+}
+
+
+================================================================================
+
+package POM;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteLogin2Page {
+
+	@FindBy(xpath = "//input[@id='pin']")
+	private WebElement pin;
+
+	@FindBy(xpath = "//button[text()='Continue ']")
+	private WebElement cnt;
+
+	public KiteLogin2Page(WebDriver driver) {
+		PageFactory.initElements(driver, this);
+	}
+
+	public void setKiteLogin2PagePIN() {
+		pin.sendKeys("959594");
+	}
+
+	public void clickKiteLogin2PageContinue() {
+		cnt.click();
+	}
+
+}
+
+
+
+================================================================================
+
+package POM;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteHomePage {
+
+	@FindBy(xpath="//span[text()='KV']")
+	private WebElement PN;
+	
+	
+	public KiteHomePage(WebDriver driver){
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	public void verifyKiteHomePageProfileName() {
+		String act = PN.getText();
+		String exp="KV";
+		if (act.equals(exp)) {
+			System.out.println("Pass");
+		} else {
+			System.out.println("Fail");
+		}
+	}
+	
+	
+}
+
+
+================================================================================
+
+package POM;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class KiteLoginTest {
+	public static void main(String[] args) throws InterruptedException {
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\sanjay\\Desktop\\Study\\Selenium_Syallabus\\Software\\chromedriver_win32 (3)\\chromedriver.exe");
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
+
+		WebDriver driver = new ChromeDriver(options);
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+
+		KiteLogin1Page login1 = new KiteLogin1Page(driver);
+		login1.setKiteLogin1PageUsername();
+		login1.setKiteLogin1PagePassword();
+		login1.clickKiteLogin1PageLoginButton();
+
+		KiteLogin2Page login2 = new KiteLogin2Page(driver);
+		login2.setKiteLogin2PagePIN();
+		login2.clickKiteLogin2PageContinue();
+
+		KiteHomePage home = new KiteHomePage(driver);
+		home.verifyKiteHomePageProfileName();
+
+		Thread.sleep(5000);
+		driver.close();
+
+	}
+}
