@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test1(failed)">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="testNG.Verification">
+      <class name="pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest">
         <methods>
-          <include name="Test12"/>
-          <include name="Test9"/>
-          <include name="Test14"/>
-          <include name="Test6"/>
-          <include name="Test13"/>
-          <include name="Test7"/>
-          <include name="Test4"/>
-          <include name="Test1"/>
+          <include name="loginApp"/>
+          <include name="takeScreenShotOnFailure"/>
+          <include name="verifyProfileMenuButton"/>
+          <include name="closeApplication"/>
+          <include name="verifyLogoutButton"/>
+          <include name="setupApplication"/>
+          <include name="verifyProfileName"/>
         </methods>
-      </class> <!-- testNG.Verification -->
+      </class> <!-- pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test1(failed) -->
+</suite> <!-- Failed suite [Suite] -->

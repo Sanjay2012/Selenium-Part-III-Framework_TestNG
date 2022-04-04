@@ -1,4 +1,4 @@
-package pomPageFactory_Annotations;
+package pomDDFWithTestNGBaseClassUtilityClass;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +12,8 @@ public class KiteLoginPage2 {
 				private WebElement PIN;
 			@FindBy(xpath = "//*[@class=\"button-orange wide\"]")
 			private WebElement UN;
-
 			
-			
+		
 			// initilization
 			
 			public KiteLoginPage2 (WebDriver driver) {

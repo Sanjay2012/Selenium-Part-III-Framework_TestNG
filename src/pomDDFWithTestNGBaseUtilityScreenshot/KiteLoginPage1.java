@@ -1,4 +1,4 @@
-package pomPageFactory_Annotations;
+package pomDDFWithTestNGBaseUtilityScreenshot;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,15 +15,14 @@ public class KiteLoginPage1 {
 		
 		@FindBy(xpath = "//*[@class=\"button-orange wide\"]")
 		private WebElement login;
-		
-		
+
 		// initilization
 		
 		public KiteLoginPage1 (WebDriver driver) {
 			PageFactory.initElements(driver, this);
 			
+			
 		}
-		
 		
 		public void
 		setKiteLoginPage1Username(String userName) {

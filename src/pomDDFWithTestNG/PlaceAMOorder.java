@@ -1,4 +1,4 @@
-package pomPageFactory_Annotations;
+package pomDDFWithTestNG;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

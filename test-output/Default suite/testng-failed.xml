@@ -3,18 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testNG.Verification">
+      <class name="pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest">
         <methods>
-          <include name="Test12"/>
-          <include name="Test9"/>
-          <include name="Test14"/>
-          <include name="Test6"/>
-          <include name="Test13"/>
-          <include name="Test7"/>
-          <include name="Test4"/>
-          <include name="Test1"/>
+          <include name="verifyProfileName"/>
+          <include name="loginApp"/>
+          <include name="closeApplication"/>
+          <include name="verifyLogoutButtonStatus"/>
+          <include name="verifyProfileMenuEnabled"/>
+          <include name="verifyLogoutPageTitle"/>
+          <include name="goBackToLoginPage"/>
+          <include name="setupApplication"/>
         </methods>
-      </class> <!-- testNG.Verification -->
+      </class> <!-- pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

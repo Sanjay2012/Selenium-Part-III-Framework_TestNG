@@ -1,9 +1,11 @@
-package pomPageFactory_Annotations;
+package pomDDFWithTestNGBaseClassUtilityClass;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 public class KiteHomePage {
 	
@@ -17,11 +19,15 @@ public class KiteHomePage {
 				@FindBy(xpath = "//*[@class=\"icon icon-exit\"]")
 				private WebElement logoutButton;
 
+				WebDriver driver;
+
 				
 				// initilization
 				
 				public KiteHomePage (WebDriver driver) {
+					
 					PageFactory.initElements(driver, this);
+					
 					
 				}
 				
@@ -29,16 +35,15 @@ public class KiteHomePage {
 				veryfyKiteHomePageProfileName(String expected ) {
 					
 					String actual = profileName.getText();
+					Assert.assertEquals(actual, expected);
+					Reporter.log("User navigated to right page", true);
 					
-					if (actual.equals(expected)) {
-						
-						System.out.println("PASS");
-						
-					}
-					
-					else {
-						System.out.println("FAIL");
-					}
+				}
+				
+				public void 
+				verifyProfileMenuButton() {
+					Assert.assertTrue(menuButton.isEnabled());
+					Reporter.log("Profile Menu button is enabled", true);
 					
 				}
 				
@@ -47,6 +52,11 @@ public class KiteHomePage {
 					menuButton.click();
 				}
 				
+				public void
+				verifyLogoutButton() {
+					Assert.assertTrue(logoutButton.isEnabled());
+					Reporter.log("Logout button is enabled", true);
+				}
 				
 				public void
 				clickOnLogoutButton() {
