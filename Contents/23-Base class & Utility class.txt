@@ -1,0 +1,392 @@
+Selenium TestNg Framework
+=================================
+# introducing 
+- Base class
+- utility class in framework
+- Screenshot folder to store failed test cases
+- drivers folder
+- testData folder
+
+==================================================
+We have already
+- POM classes
+- Test class
+
+* Base class: driver initilization/setup & teardown, synchronization
+* Utility class: maintain test data methods, methods related to capture screenshots for failure TC
+* Sceenshots: used to maintain screenshots taken for failure TC only
+* driver folder: all driver should be there--> provide the path for driver from the folder
+* test data folder: all test data should be present in it
+
+====================================================
+package TestNGBase_Utility;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+public class BaseClass {
+	public static WebDriver driver;
+	@BeforeClass
+	public void setUpApplication() throws EncryptedDocumentException, IOException {
+
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//drivers/chromedriver.exe");
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notification");
+
+		driver = new ChromeDriver(options);
+
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+
+	}
+	
+	@AfterClass
+	public void tearDown() throws InterruptedException {
+		Thread.sleep(2000);
+
+		driver.quit();
+	}
+
+}
+
+===================================
+package TestNGBase_Utility;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
+
+public class Utility {
+	static Sheet sh;
+	public static String getTestData(int rowIndex, int colIndex) throws EncryptedDocumentException, IOException {
+		
+	FileInputStream file = new FileInputStream("C:\\Users\\Dell\\eclipse-workspace\\AutomationTesting\\testData\\testdata.xlsx");
+	sh = WorkbookFactory.create(file).getSheet("DDF");
+	String value = sh.getRow(rowIndex).getCell(colIndex).getStringCellValue();
+	return value;
+}
+	public static void captureScreenshot(WebDriver driver, String testName) throws IOException {
+		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
+		File destFile=new File("./Screenshots/"+testName+".png");
+		FileHandler.copy(scrFile, destFile);
+	}
+	
+}
+
+==========================================
+package TestNGBase_Utility;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteLoginPage1 {
+	
+	// declaration
+		@FindBy(xpath = "//*[@id=\"userid\"]") 
+			private WebElement UN;
+		@FindBy(xpath = "//*[@id=\"password\"]")
+		private WebElement PWD;
+		
+		@FindBy(xpath = "//*[@class=\"button-orange wide\"]")
+		private WebElement login;
+		
+		
+		// initilization
+		
+		public KiteLoginPage1 (WebDriver driver) {
+			PageFactory.initElements(driver, this);
+			
+		}
+		
+		
+		public void
+		setKiteLoginPage1Username(String userName) {
+			UN.sendKeys(userName);
+		}
+		
+		public void
+		setKiteLoginPage1Password(String password) {
+			PWD.sendKeys(password);
+		}
+		
+		public void
+		clickKiteLoginPage1LoginButton() {
+			login.click();
+		}
+		
+
+}
+
+===============================================
+package pomDDFWithTestNGBaseUtilityScreenshot;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
+
+public class KiteHomePage {
+
+	// declaration
+				@FindBy(xpath = "//*[@class=\"avatar\"]") 
+					private WebElement profileName;
+				
+				@FindBy(xpath = "//*[@class=\"user-id\"]")
+				private WebElement menuButton;
+				
+				@FindBy(xpath = "//*[@class=\"icon icon-exit\"]")
+				private WebElement logoutButton;
+
+				WebDriver driver;
+
+				
+				// initilization
+				
+				public KiteHomePage (WebDriver driver) {
+					
+					PageFactory.initElements(driver, this);
+					
+					
+				}
+				
+				public String
+				veryfyKiteHomePageProfileName( ) {
+					String actual = profileName.getText();
+					return actual;
+					
+				}
+				
+				public boolean 
+				verifyProfileMenuButton() {
+					boolean status = menuButton.isEnabled();
+					return status;
+					
+				}
+				
+				public void
+				clickOnProfileMenuButton() {
+					menuButton.click();
+				}
+				
+				public boolean
+				verifyLogoutButton() {
+					boolean status = logoutButton.isEnabled();
+					return status;
+
+				}
+				
+				public void
+				clickOnLogoutButton() {
+					logoutButton.click();
+				}
+
+}
+
+
+============================================
+package TestNGBase_Utility;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class KiteLoginPage2 {
+	
+	// declaration
+			@FindBy(xpath = "//*[@id=\"pin\"]") 
+				private WebElement PIN;
+			@FindBy(xpath = "//*[@class=\"button-orange wide\"]")
+			private WebElement UN;
+
+			
+			
+			// initilization
+			
+			public KiteLoginPage2 (WebDriver driver) {
+				PageFactory.initElements(driver, this);
+				
+			}
+			
+			
+			public void
+			setKiteLoginPage2Pin(String pinValue) {
+				PIN.sendKeys(pinValue);
+			}
+			
+			
+			public void
+			clickKiteLoginPage2ContinueButton() {
+				UN.click();
+			}
+
+}
+
+=============================================
+package TestNGBase_Utility;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+public class KiteHomePage {
+	
+	// declaration
+				@FindBy(xpath = "//*[@class=\"avatar\"]") 
+					private WebElement profileName;
+				
+				@FindBy(xpath = "//*[@class=\"user-id\"]")
+				private WebElement menuButton;
+				
+				@FindBy(xpath = "//*[@class=\"icon icon-exit\"]")
+				private WebElement logoutButton;
+
+				WebDriver driver;
+
+				
+				// initilization
+				
+				public KiteHomePage (WebDriver driver) {
+					PageFactory.initElements(driver, this);
+					
+				}
+				
+				public String
+				verifyKiteHomePageProfileName() {
+					
+					String actual = profileName.getText();
+					return actual;
+				}
+				
+				public boolean
+				verifyProfileMenuButton() {
+					boolean status = menuButton.isDisplayed();
+					return status;
+				}
+				
+				public void
+				clickOnProfileMenuButton() {
+					menuButton.click();
+				}
+				
+				
+				public void
+				clickOnLogoutButton() {
+					logoutButton.click();
+				}
+
+}
+
+========================================
+package TestNGBase_Utility;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+
+
+
+public class KiteLoginTest1 extends BaseClass {
+	public KiteLoginPage1 login1;
+	public KiteLoginPage2 login2;
+	public KiteHomePage home;
+	public KitePageAfterLogout logout;
+
+
+	@BeforeMethod
+	public void loginApp() throws EncryptedDocumentException, IOException {
+		// calling methods from POM class -- KiteLoginPage1
+		login1 = new KiteLoginPage1(driver);
+		login1.setKiteLoginPage1Username(Utility.getTestData(1, 0));
+		login1.setKiteLoginPage1Password(Utility.getTestData(1, 1));
+
+		login1.clickKiteLoginPage1LoginButton();
+
+		// cllaing methods from page2
+
+		login2 = new KiteLoginPage2(driver);
+		login2.setKiteLoginPage2Pin(Utility.getTestData(1, 2));
+
+		login2.clickKiteLoginPage2ContinueButton();
+
+	}
+
+	@Test(description = "This TC will verify Profile Name")
+	public void verifyProfileName() throws EncryptedDocumentException, IOException {
+		// calling methods from home page class
+
+		home = new KiteHomePage(driver);
+		
+		String expected = Utility.getTestData(1, 4);
+		String actual=home.verifyKiteHomePageProfileName();
+		Assert.assertEquals(actual, expected);
+		home.clickOnProfileMenuButton();
+		home.clickOnLogoutButton();
+		logout=new KitePageAfterLogout(driver);
+		logout.clickOnChangeUserLink();
+		
+	}
+	
+	@Test(description = "This TC will verify status of Profile Menu Button")
+	public void verifyProfileMenuButton() {
+		home = new KiteHomePage(driver);
+	//assert profile menu button
+	boolean menuButtonStatus = home.verifyProfileMenuButton();
+	Assert.assertTrue(menuButtonStatus);
+	home.clickOnProfileMenuButton();
+	home.clickOnLogoutButton();
+	logout=new KitePageAfterLogout(driver);
+	logout.clickOnChangeUserLink();
+	
+
+	}
+
+	
+	@AfterMethod
+	public void takeScreenShotOnFailure (ITestResult testResult) throws IOException  {
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+			Utility.captureScreenshot(driver,testResult.getName());
+			
+}
+		
+	}
+
+
+}
+
+
+		
+		
+==========================

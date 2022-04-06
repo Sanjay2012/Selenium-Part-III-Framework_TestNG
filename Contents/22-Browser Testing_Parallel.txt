@@ -1,0 +1,126 @@
+# Compatability testing/ cross browser testing--> testing the test classes with different browsers
+- create test for choose browser
+- open url
+- close url
+
+* create TestNG suit to choose browser
+--------------------------
+package browserTesting;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class MultibrowserTesting {
+	WebDriver driver;
+	@Parameters("browser")
+	
+	@Test
+	public void TC(String browser) throws InterruptedException {
+		if (browser.equals("Chrome")) {
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//Drivers/chromedriver.exe");
+			 driver = new ChromeDriver();
+			
+		}
+		else if (browser.equals("Firefox")) {
+			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "//Drivers/geckodriver.exe");
+			 driver = new FirefoxDriver();
+			
+		}
+		
+		else if (browser.equals("Edge")) {
+			System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + "//Drivers/msedgedriver.exe");
+			 driver = new EdgeDriver();
+			
+		}
+		
+		driver.get("https://www.facebook.com/");
+		// driver.get("https://www.amazon.in/");
+		//driver.get("https://www.flipkart.com/");
+		//driver.get("https://www.google.com/");
+
+		Thread.sleep(3000);
+		driver.quit();
+	}
+	
+	
+
+
+
+}
+----------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+
+	<test thread-count="5" name="Test1">
+		<parameter name="browser" value="Edge"></parameter>
+		<classes>
+			<class name="browserTesting.MultibrowserTesting" />
+		</classes>
+
+	</test> <!-- Test -->
+
+
+</suite> <!-- Suite -->
+-----------------------------------
+
+# Parallel testing --> running test casses simultaniously with different browser by dividing them
+15 test classes
+
+5 test classes--> chrome
+5 test classes--> Firefox
+5 test classes --> edge browser
+
+minimize the test execution time
+
+------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests">
+
+	<test name="ChromeBrowserTest">
+		<parameter name="browser" value="Chrome"></parameter>
+		<classes>
+			<class name="browserTesting.Facebook" />
+			<class name="browserTesting.Google" />
+		</classes>
+
+	</test> <!-- Test -->
+
+	<test name="FirefoxBrowserTest">
+		<parameter name="browser" value="Firefox"></parameter>
+		<classes>
+			<class name="browserTesting.Amazon" />
+		</classes>
+
+	</test> <!-- Test -->
+
+	<test name="EdgeBrowserTest">
+		<parameter name="browser" value="Edge"></parameter>
+		<classes>
+			<class name="browserTesting.FlipKart" />
+		</classes>
+
+	</test> <!-- Test -->
+
+
+</suite> <!-- Suite -->
+==========================================================
+
+-Selenium --Why, flawars, adv, draw
+- WebDriver
+- Methods of WebDriver
+- Methods of WebElements
+- WebElements--> listbox, textbox, dropdown, etc
+- DDF
+- screenshots
+- paramerization
+- methods of javaSript Executor
+- TestNG--> annotations, keywords, suite--> compatibility, parallel, reports etc
+- Folder structure of framework
+- Testng+Data driven with Maven (build tool) project
+- Git + gitHub---> repository

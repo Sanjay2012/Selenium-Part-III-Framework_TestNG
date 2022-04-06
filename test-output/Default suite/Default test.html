@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/0/3</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Apr 04 15:12:22 IST 2022</td>
+<td>Started on:</td><td>Tue Apr 05 08:37:02 IST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>26 seconds (26413 ms)</td>
+<tr><td>Total time:</td><td>0 seconds (141 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,62 +67,296 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest.verifyLogoutButtonStatus()'><b>verifyLogoutButtonStatus</b><br>Test class: pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest<br>Test method: This TC will verify Logout Button status<br/>
-<a href="#Output-1664757401" onClick='toggleBox("Output-1664757401", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-1664757401" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1664757401">
-Logout button is enabled<br/>
-</div>
-</td>
-<td></td>
-<td>4</td>
-<td>pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest@7e7be63f</td></tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.setupApplication()'><b>setupApplication</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1042790962", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1042790962'><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
 <tr>
-<td title='pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest.verifyProfileMenuEnabled()'><b>verifyProfileMenuEnabled</b><br>Test class: pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest<br>Test method: This TC will verify Profile Menu Button Status<br/>
-<a href="#Output-1803714790" onClick='toggleBox("Output-1803714790", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-1803714790" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1803714790">
-Profile Menu button is enabled<br/>
-</div>
-</td>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.takeScreenShotOnFailure()'><b>takeScreenShotOnFailure</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
 <td></td>
-<td>3</td>
-<td>pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest@7e7be63f</td></tr>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
 <tr>
-<td title='pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest.verifyProfileName()'><b>verifyProfileName</b><br>Test class: pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest<br>Test method: This TC will verify Profile Name on dashboard<br/>
-<a href="#Output-1840217399" onClick='toggleBox("Output-1840217399", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-1840217399" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1840217399">
-User navigated to right page<br/>
-</div>
-</td>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.closeApplication()'><b>closeApplication</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
 <td></td>
-<td>3</td>
-<td>pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest@7e7be63f</td></tr>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
 <tr>
-<td title='pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest.verifyLogoutPageTitle()'><b>verifyLogoutPageTitle</b><br>Test class: pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest<br>Test method: This TC will verify page title and profile name after Logout<br/>
-<a href="#Output-262911569" onClick='toggleBox("Output-262911569", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-262911569" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-262911569">
-Correct User<br/>
-Correct page title<br/>
-</div>
-</td>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.takeScreenShotOnFailure()'><b>takeScreenShotOnFailure</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
 <td></td>
-<td>3</td>
-<td>pomDDFWithTestNGBaseClassUtilityClass.KiteLoginTest@7e7be63f</td></tr>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.loginApp()'><b>loginApp</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
+<td></td>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.takeScreenShotOnFailure()'><b>takeScreenShotOnFailure</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
+<td></td>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.loginApp()'><b>loginApp</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
+<td></td>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.loginApp()'><b>loginApp</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest</td>
+<td></td>
+<td>-1649128022</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.verifyProfileMenuButton()'><b>verifyProfileMenuButton</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest<br>Test method: This TC will verify status of Profile Menu Button</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1835073088", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1835073088'><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.verifyProfileName()'><b>verifyProfileName</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest<br>Test method: This TC will verify Profile Name on dashboard</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace429075478", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace429075478'><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
+<tr>
+<td title='pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest.verifyLogoutButton()'><b>verifyLogoutButton</b><br>Test class: pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest<br>Test method: This TC will verify status of logout Button</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace724608044", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace724608044'><pre>org.testng.TestNGException: 
+Parameter &apos;browser&apos; is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813</td></tr>
 </table><p>
 </body>
 </html>

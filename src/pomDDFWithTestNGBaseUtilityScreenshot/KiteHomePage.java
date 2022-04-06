@@ -9,8 +9,7 @@ import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
 public class KiteHomePage {
-	
-	//SoftAssert soft=new SoftAssert();
+
 	// declaration
 				@FindBy(xpath = "//*[@class=\"avatar\"]") 
 					private WebElement profileName;

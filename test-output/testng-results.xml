@@ -1,103 +1,201 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="0" failed="0" skipped="3">
   <reporter-output>
-    <line>
-      <![CDATA[=====Chrome Browser Session Started=====]]>
-    </line>
-    <line>
-      <![CDATA[=====Application Started=====]]>
-    </line>
-    <line>
-      <![CDATA[=====Browser Session End=====]]>
-    </line>
   </reporter-output>
-  <suite started-at="2022-04-04T21:10:45 IST" name="Suite" finished-at="2022-04-04T21:11:19 IST" duration-ms="33696">
+  <suite started-at="2022-04-05T08:37:02 IST" name="Default suite" finished-at="2022-04-05T08:37:02 IST" duration-ms="141">
     <groups>
     </groups>
-    <test started-at="2022-04-04T21:10:45 IST" name="Test1" finished-at="2022-04-04T21:11:19 IST" duration-ms="33696">
+    <test started-at="2022-04-05T08:37:02 IST" name="Default test" finished-at="2022-04-05T08:37:02 IST" duration-ms="141">
       <class name="pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest">
-        <test-method is-config="true" signature="setupApplication(java.lang.String)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:10:45 IST" name="setupApplication" finished-at="2022-04-04T21:10:55 IST" duration-ms="9494" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="setupApplication(java.lang.String)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="setupApplication" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022168" status="FAIL">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:270)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
-            <line>
-              <![CDATA[=====Chrome Browser Session Started=====]]>
-            </line>
-            <line>
-              <![CDATA[=====Application Started=====]]>
-            </line>
           </reporter-output>
         </test-method> <!-- setupApplication -->
-        <test-method is-config="true" signature="loginApp()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:10:55 IST" name="loginApp" finished-at="2022-04-04T21:10:58 IST" duration-ms="3401" status="PASS">
+        <test-method is-config="true" signature="loginApp()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="loginApp" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022222" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginApp -->
-        <test-method signature="verifyLogoutButton()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:10:58 IST" name="verifyLogoutButton" description="This TC will verify status of logout Button" finished-at="2022-04-04T21:11:04 IST" duration-ms="6103" status="PASS">
+        <test-method signature="verifyLogoutButton()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="verifyLogoutButton" description="This TC will verify status of logout Button" finished-at="2022-04-05T08:37:02 IST" duration-ms="0" status="SKIP">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:270)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyLogoutButton -->
-        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:04 IST" name="takeScreenShotOnFailure" finished-at="2022-04-04T21:11:04 IST" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyLogoutButton status=SUCCESS method=KiteLoginTest.verifyLogoutButton()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a] output={null}]]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="takeScreenShotOnFailure" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022236" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method is-config="true" signature="loginApp()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:04 IST" name="loginApp" finished-at="2022-04-04T21:11:05 IST" duration-ms="1138" status="PASS">
+        <test-method is-config="true" signature="loginApp()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="loginApp" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022240" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginApp -->
-        <test-method signature="verifyProfileMenuButton()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:05 IST" name="verifyProfileMenuButton" description="This TC will verify status of Profile Menu Button" finished-at="2022-04-04T21:11:13 IST" duration-ms="7941" status="PASS">
+        <test-method signature="verifyProfileMenuButton()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="verifyProfileMenuButton" description="This TC will verify status of Profile Menu Button" finished-at="2022-04-05T08:37:02 IST" duration-ms="0" status="SKIP">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:270)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyProfileMenuButton -->
-        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:13 IST" name="takeScreenShotOnFailure" finished-at="2022-04-04T21:11:13 IST" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyProfileMenuButton status=SUCCESS method=KiteLoginTest.verifyProfileMenuButton()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a] output={null}]]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="takeScreenShotOnFailure" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022251" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method is-config="true" signature="loginApp()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:13 IST" name="loginApp" finished-at="2022-04-04T21:11:15 IST" duration-ms="1553" status="PASS">
+        <test-method is-config="true" signature="loginApp()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="loginApp" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022254" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginApp -->
-        <test-method signature="verifyProfileName()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:15 IST" name="verifyProfileName" description="This TC will verify Profile Name on dashboard" finished-at="2022-04-04T21:11:18 IST" duration-ms="3576" status="PASS">
+        <test-method signature="verifyProfileName()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="verifyProfileName" description="This TC will verify Profile Name on dashboard" finished-at="2022-04-05T08:37:02 IST" duration-ms="0" status="SKIP">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by BeforeClass on method setupApplication but has not been marked @Optional or defined
+in C:\Users\Dell\AppData\Local\Temp\testng-eclipse--418350423\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:270)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:176)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:122)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyProfileName -->
-        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:18 IST" name="takeScreenShotOnFailure" finished-at="2022-04-04T21:11:18 IST" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyProfileName status=SUCCESS method=KiteLoginTest.verifyProfileName()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a] output={null}]]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="takeScreenShotOnFailure(org.testng.ITestResult)[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="takeScreenShotOnFailure" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022265" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- takeScreenShotOnFailure -->
-        <test-method is-config="true" signature="closeApplication()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@21e360a]" started-at="2022-04-04T21:11:18 IST" name="closeApplication" finished-at="2022-04-04T21:11:19 IST" duration-ms="404" status="PASS">
+        <test-method is-config="true" signature="closeApplication()[pri:0, instance:pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest@7c24b813]" started-at="2022-04-05T08:37:02 IST" name="closeApplication" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1649128022268" status="SKIP">
           <reporter-output>
-            <line>
-              <![CDATA[=====Browser Session End=====]]>
-            </line>
           </reporter-output>
         </test-method> <!-- closeApplication -->
       </class> <!-- pomDDFWithTestNGBaseUtilityScreenshot.KiteLoginTest -->
-    </test> <!-- Test1 -->
-  </suite> <!-- Suite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -8,9 +8,7 @@
         <methods>
           <include name="loginApp"/>
           <include name="takeScreenShotOnFailure"/>
-          <include name="verifyProfileMenuButton"/>
           <include name="closeApplication"/>
-          <include name="verifyLogoutButton"/>
           <include name="setupApplication"/>
           <include name="verifyProfileName"/>
         </methods>
