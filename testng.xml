@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
-    <classes>
-      <class name="pomDDFWithTestNG.KiteLoginTest"/>
-    </classes>
-  </test> <!-- Test -->
+	<test thread-count="5" name="Test">
+		<parameter name="username" value="KW0610"></parameter>
+		<parameter name="password" value="Shiv@123"></parameter>
+		<parameter name="PIN" value="152022"></parameter>
+		<parameter name="profileName" value="SB"></parameter>
+		<classes>
+			<class name="testNG.Parameter.LoginTest" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->
